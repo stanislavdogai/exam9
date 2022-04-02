@@ -93,7 +93,7 @@ class PhotoTokenDetailView(View):
         favorite = photo.favorites.all()
         return render(request, 'photos/token_view.html', {'photo' : photo, 'favorite' : favorite})
 
-class PhotoTokenGenerate(LoginRequiredMixin, APIView):
+class PhotoTokenGenerate(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         photo = get_object_or_404(Photo, pk=kwargs['pk'])
         if not photo.token:

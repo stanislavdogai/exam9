@@ -30,6 +30,11 @@
         {% if perms.webapp.change_photo or user in photo.author %}
             <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
         {% endif %}
+        {% if user not in photo.favorites.all %}
+            <button id="favoritebtn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">В избранное</button>
+        {% else %}
+            <button id="favoritebtn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">Удалить из избранного</button>
+        {% endif %}
         </div>
       </div>
     {% endfor %}
