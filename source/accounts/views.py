@@ -37,3 +37,21 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         context['favorites'] = favorites
         context['favorites_albums'] = favorites_albums
         return context
+
+class ProfileUserDetailView(LoginRequiredMixin, DetailView):
+    model = get_user_model()
+    template_name = 'profile_user.html'
+    context_object_name = 'user_obj'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        photos = self.object.photo.filter(private=False)
+        favorites = self.object.favorite_photo.filter(private=False)
+        albums = self.object.album.filter(private=False)
+        favorites_albums = self.object.favorite_album.filter(private=False)
+        context['photos'] = photos
+        context['albums'] = albums
+        context['favorites'] = favorites
+        context['favorites_albums'] = favorites_albums
+        return context

@@ -4,9 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView, TemplateView
 
 from webapp.forms import PhotoForm
 from webapp.models import Photo
@@ -93,7 +91,7 @@ class PhotoTokenDetailView(View):
         favorite = photo.favorites.all()
         return render(request, 'photos/token_view.html', {'photo' : photo, 'favorite' : favorite})
 
-class PhotoTokenGenerate(LoginRequiredMixin, View):
+class PhotoTokenGenerate(PermissionRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         photo = get_object_or_404(Photo, pk=kwargs['pk'])
         if not photo.token:
@@ -102,3 +100,8 @@ class PhotoTokenGenerate(LoginRequiredMixin, View):
             photo.save()
             return redirect('webapp:photo_detail', pk=kwargs['pk'])
         return redirect('webapp:photo_detail', pk=kwargs['pk'])
+
+
+    def has_permission(self):
+        photo = get_object_or_404(Photo, pk=self.kwargs['pk'])
+        return self.request.user == photo.author

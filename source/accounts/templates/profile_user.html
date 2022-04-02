@@ -6,17 +6,17 @@
             <h5 class="card-title">{{ user_obj.username }}</h5>
         </div>
     </div>
-    <h3>Ваши альбомы:</h3>
+    <h3>Альбомы {{ user_obj.username }}:</h3>
     {% for album in albums %}
     <p><a href="{% url 'web:album_view' album.pk %}">{{ album.name }}</a></p>
     {% endfor %}
 
 
-    <h3>Избранные альбомы</h3>
+    <h3>Избранные альбомы у {{ user_obj.username }}</h3>
     {% for album in favorites_albums %}
         <p><a href="{% url 'web:album_view' album.pk %}">{{ album.name }}</a></p>
         {% endfor %}
-    <h3>Ваши посты:</h3>
+    <h3>Посты {{ user_obj.username }}:</h3>
 
 <div class="row mt-5">
     {% for photo in photos %}
@@ -35,7 +35,7 @@
       </div>
     {% endfor %}
 </div>
-    <h3>Избранные посты:</h3>
+    <h3>Избранные посты {{ user_obj.username }}</h3>
 <div class="row mt-5">
     {% for photo in favorites %}
       <div class="col-sm-6">

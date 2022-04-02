@@ -10,7 +10,7 @@
       {% endif %}
   <p>Понравилось:</p>
   {% for fav in favorite %}
-      <p><a href="{% url 'accounts:profile' fav.id%}">{{ fav }}</a></p>
+      <p><a href="{% url 'accounts:user_profile' fav.id%}">{{ fav }}</a></p>
   {% endfor %}
     <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
   </div>

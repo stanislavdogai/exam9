@@ -1,12 +1,13 @@
 from http import HTTPStatus
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from webapp.models import Photo, Album
 
 
-class FavoritesPhoto(APIView):
+class FavoritesPhoto(LoginRequiredMixin, APIView):
     def get(self, request, *args, **kwargs):
         photo = Photo.objects.get(pk=kwargs['pk'])
         if request.user in photo.favorites.all():
@@ -18,7 +19,7 @@ class FavoritesPhoto(APIView):
             return Response({}, status=HTTPStatus.OK)
 
 
-class FavoritesAlbum(APIView):
+class FavoritesAlbum(LoginRequiredMixin, APIView):
     def get(self, request, *args, **kwargs):
         album = Album.objects.get(pk=kwargs['pk'])
         if request.user in album.favorites.all():
