@@ -20,7 +20,7 @@ def register_view(request):
             return redirect('webapp:home_page')
     return render(request, 'registration/registration.html', {'form' : form})
 
-class ProfileDetailView(LoginRequiredMixin ,DetailView):
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = get_user_model()
     template_name = 'profile.html'
     context_object_name = 'user_obj'

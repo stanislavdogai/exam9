@@ -14,17 +14,10 @@
   {% endfor %}
     <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
   </div>
-
-{% if user in photo.author %}
-{% if photo.token %}
-    <p>Вот ваша токен ссылка: <a href="{% url 'webapp:photo_token' photo.token %}">http://localhost:8000/photo/{{ photo.token }}</a></p>
-    {% else %}
-    <a class="btn btn-secondary" href="{% url 'webapp:generate_token' photo.pk %}">Сгенерируйте ссылку</a>
-{% endif %}
-{% endif %}
-
-
 </div>
-
 {% endblock %}
 
+<h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+            <p class="card-text">Альбом: {{ photo.album.name }}</p>
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>

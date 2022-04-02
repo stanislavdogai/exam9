@@ -1,5 +1,3 @@
-import uuid
-
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -13,7 +11,7 @@ class Photo(models.Model):
     album = models.ForeignKey('webapp.Album', blank=True, on_delete=models.CASCADE, related_name='photo', verbose_name='Альбом')
     private = models.BooleanField(default=True, verbose_name='Приват')
     favorites = models.ManyToManyField(User, null=True, blank=True, related_name='favorite_photo')
-    token = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    token = models.UUIDField(editable=False, null=True, blank=True)
 
     class Meta:
         db_table = 'Photos'

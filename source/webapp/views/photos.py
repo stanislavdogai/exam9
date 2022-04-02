@@ -1,11 +1,15 @@
+import uuid
+
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from webapp.forms import PhotoForm
-from webapp.models import Photo, Album
+from webapp.models import Photo
 
 
 
@@ -82,3 +86,19 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         return super().has_permission() or self.request.user == self.get_object().author
+
+class PhotoTokenDetailView(View):
+    def get(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, token=kwargs['photo_id'])
+        favorite = photo.favorites.all()
+        return render(request, 'photos/token_view.html', {'photo' : photo, 'favorite' : favorite})
+
+class PhotoTokenGenerate(LoginRequiredMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, pk=kwargs['pk'])
+        if not photo.token:
+            token = uuid.uuid4()
+            photo.token = token
+            photo.save()
+            return redirect('webapp:photo_detail', pk=kwargs['pk'])
+        return redirect('webapp:photo_detail', pk=kwargs['pk'])
