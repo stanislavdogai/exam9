@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Удаление поста{% endblock %}
+{% block content %}
+    <h2>Вы действительно хотите удалить пост</h2>
+    <form method="POST">
+
+        {% include 'partial/../partial/../partial/form.html' with button_text='Да' %}
+    </form>
+    <a class="btn btn-secondary" href="{% url 'web:photo_index'  %}">Нет</a>
+{% endblock %}

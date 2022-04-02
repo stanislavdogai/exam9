@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
 {% block nav %}
+    {% if user.is_authenticated %}
     <li class="nav-item">
         <a class="nav-link" href="{% url 'web:photo_create' %}">Добавить публикацию</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'web:album_create' %}">Создать альбом</a>
     </li>
+    {% endif %}
 {% endblock nav %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <div class="card-group">
     {% for photo in photos %}
       <div class="card">
@@ -22,11 +24,15 @@
             <p class="card-text">Альбом: <a href="{% url 'web:album_view' photo.album.pk %}">{{ photo.album.name }}</a></p>
             {% endif %}
           <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+        {% if perms.webapp.delete_photo or user in photo.author %}
              <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+        {% endif %}
+        {% if perms.webapp.change_photo or user in photo.author %}
             <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+        {% endif %}
         </div>
       </div>
     {% endfor %}
 </div>
-
+    {% endif %}
 {% endblock %}

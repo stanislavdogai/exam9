@@ -36,15 +36,14 @@
                                 <a class="nav-link" href="{% url 'accounts:login' %}">Вход</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}">Регистрация</a>
+                                <a class="nav-link" href="{% url 'accounts:registration' %}">Регистрация</a>
                             </li>
                         {% else %}
-
                             <li class="nav-item">
                                 <p class="nav-link">Привет, <a href="{% url 'accounts:profile' user.id %}">{{ user.username }}</a></p>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выход</a>
+                                <a class="nav-link" href="{% url 'accounts:logout' %}">Выход</a>
                             </li>
                         {% endif %}
 
