@@ -8,7 +8,7 @@ class Photo(models.Model):
     signature = models.CharField(max_length=200, null=False, blank=False, verbose_name='Подпись')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     author = models.ForeignKey(User, related_name='photo', on_delete=models.CASCADE, blank=False, verbose_name='Автор')
-    album = models.ForeignKey('webapp.Album', blank=True, on_delete=models.CASCADE, related_name='photo', verbose_name='Альбом')
+    album = models.ForeignKey('webapp.Album',null=True, blank=True, on_delete=models.CASCADE, related_name='photo', verbose_name='Альбом')
     private = models.BooleanField(default=True, verbose_name='Приват')
     favorites = models.ManyToManyField(User, null=True, blank=True, related_name='favorite_photo')
     token = models.UUIDField(editable=False, null=True, blank=True)

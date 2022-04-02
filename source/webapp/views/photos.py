@@ -18,7 +18,7 @@ class PhotoIndexView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(private=False)
+        queryset = queryset.filter(private=False).filter(album__private=False)
         return queryset.order_by('-created_at')
 
 
