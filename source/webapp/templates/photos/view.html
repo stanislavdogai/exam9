@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3">
+  <img src="{{ photo.photography.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Подпись: {{ photo.signature }}</h5>
+      {% if photo.album %}
+    <p class="card-text">Альбом: {{ photo.album.name }}</p>
+      {% endif %}
+  <p>Понравилось:</p>
+  {% for fav in favorite %}
+      <p>{{ fav }}</p>
+  {% endfor %}
+    <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+  </div>
+</div>
+{% endblock %}
+
+<h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+            <p class="card-text">Альбом: {{ photo.album.name }}</p>
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>

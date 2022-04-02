@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Регистрация</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% include 'partial/form.html' with button_text='Зарегистрироваться'  %}
+    </form>
+</div>
+{% endblock %}

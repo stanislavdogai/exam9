@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Create{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text='Create' %}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:photo_create' %}">Добавить публикацию</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'web:album_create' %}">Создать альбом</a>
+    </li>
+{% endblock nav %}
+
+{% block content %}
+
+<div class="card-group">
+    {% for photo in photos %}
+      <div class="card">
+          <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
+        <div class="card-body">
+          <h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+            {% if photo.album %}
+            <p class="card-text">Альбом: <a href="{% url 'web:album_view' photo.album.pk %}">{{ photo.album.name }}</a></p>
+            {% endif %}
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+             <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+            <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

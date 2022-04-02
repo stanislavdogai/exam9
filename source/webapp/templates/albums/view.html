@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Название: {{ album.name }}</h1>
+    <p>Описание: {{ album.description }}</p>
+    <p>Автор альбома: {{ album.author_album }}</p>
+<div class="card-group">
+    {% for photo in photos %}
+      <div class="card">
+          <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
+        <div class="card-body">
+          <h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+             <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+            <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+    <a class="btn btn-secondary" href="{% url 'web:album_delete' album.pk %}">Удалить альбом</a>
+    <a class="btn btn-secondary" href="{% url 'web:album_update' album.pk %}">Редактировать</a>
+{% endblock %}
