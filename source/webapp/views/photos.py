@@ -16,7 +16,6 @@ class PhotoIndexView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(private=False)
-        print(queryset)
         return queryset.order_by('-created_at')
 
 
@@ -41,7 +40,6 @@ class PhotoCreateView(CreateView):
         return kwargs
 
     def form_valid(self, form):
-        print(self.kwargs.get('pk'))
         photo = form.save(commit=False)
         photo.author = self.request.user
         photo.save()

@@ -2,20 +2,54 @@
 
 {% block content %}
     <div class="card mb-3">
-        {{ user_obj.profile.avatar.url }}
-        <img src="{{ user_obj.profile.avatar.url }}" class="card-img-top" alt="UserAva">
         <div class="card-body">
             <h5 class="card-title">{{ user_obj.username }}</h5>
-            {% if user_obj.profile.about %}
-                <p class="card-text">{{ user_obj.profile.about }}</p>
-            {% endif %}
+                <p class="card-text">какая то инфа</p>
             {% if user_obj.profile.about %}
                 <p class="card-text"><a href="#">{{ user_obj.profile.github }}</a><small class="text-muted"></small></p>
             {% endif %}
         </div>
     </div>
-    <h2>Проекты над которыми работает {{ user_obj.username }}</h2>
-    <div class="mt-5 mb-5">
-        {% include 'partial/project_list.html' %}
-    </div>
+    <h3>Ваши альбомы:</h3>
+    {% for album in albums %}
+    <p><a href="{% url 'web:album_view' album.pk %}">{{ album.name }}</a></p>
+    {% endfor %}
+    <h3>Ваши посты:</h3>
+
+<div class="card-group">
+    {% for photo in photos %}
+      <div class="card">
+          <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
+        <div class="card-body">
+          <h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+            {% if photo.album %}
+            <p class="card-text">Альбом: <a href="{% url 'web:album_view' photo.album.pk %}">{{ photo.album.name }}</a></p>
+            {% endif %}
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+             <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+            <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+    <h3>Избранные посты:</h3>
+<div class="card-group">
+    {% for photo in favorites %}
+      <div class="card">
+          <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
+        <div class="card-body">
+          <h5 class="card-title">Автор: {{ photo.author }}</h5>
+          <p class="card-text">Подпись: {{ photo.signature }}</p>
+            {% if photo.album %}
+            <p class="card-text">Альбом: <a href="{% url 'web:album_view' photo.album.pk %}">{{ photo.album.name }}</a></p>
+            {% endif %}
+          <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+             <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+            <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}

@@ -41,7 +41,7 @@
                         {% else %}
 
                             <li class="nav-item">
-                                <p class="nav-link">Привет, <a href="#">{{ user.username }}</a></p>
+                                <p class="nav-link">Привет, <a href="{% url 'accounts:profile' user.id %}">{{ user.username }}</a></p>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Выход</a>
