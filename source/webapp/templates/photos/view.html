@@ -14,8 +14,7 @@
   {% endfor %}
     <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
   </div>
-
-{% if user in photo.author %}
+{% if user == photo.author %}
 {% if photo.token %}
     <p>Вот ваша токен ссылка: <a href="{% url 'webapp:photo_token' photo.token %}">http://localhost:8000/photo/{{ photo.token }}</a></p>
     {% else %}

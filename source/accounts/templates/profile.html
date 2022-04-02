@@ -14,11 +14,17 @@
     {% for album in albums %}
     <p><a href="{% url 'web:album_view' album.pk %}">{{ album.name }}</a></p>
     {% endfor %}
+
+
+    <h3>Избранные альбомы</h3>
+    {% for album in favorites_albums %}
+        <p><a href="{% url 'web:album_view' album.pk %}">{{ album.name }}</a></p>
+        {% endfor %}
     <h3>Ваши посты:</h3>
 
-<div class="card-group">
+<div class="row mt-5">
     {% for photo in photos %}
-      <div class="card">
+      <div class="col-sm-6">
           <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
         <div class="card-body">
           <h5 class="card-title">Автор: {{ photo.author }}</h5>
@@ -34,9 +40,9 @@
     {% endfor %}
 </div>
     <h3>Избранные посты:</h3>
-<div class="card-group">
+<div class="row mt-5">
     {% for photo in favorites %}
-      <div class="card">
+      <div class="col-sm-6">
           <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
         <div class="card-body">
           <h5 class="card-title">Автор: {{ photo.author }}</h5>

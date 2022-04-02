@@ -31,7 +31,9 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         photos = self.object.photo.all()
         favorites = self.object.favorite_photo.filter(private=False)
         albums = self.object.album.all()
+        favorites_albums = self.object.favorite_album.filter(private=False)
         context['photos'] = photos
         context['albums'] = albums
         context['favorites'] = favorites
+        context['favorites_albums'] = favorites_albums
         return context

@@ -11,11 +11,13 @@
     {% endif %}
 {% endblock nav %}
 
+
+
 {% block content %}
 {% if user.is_authenticated %}
-<div class="card-group">
+<div class="row">
     {% for photo in photos %}
-      <div class="card">
+      <div class="col-sm-6">
           <a class="pictureindex" href="{% url 'web:photo_detail' photo.pk %}"><img src="{{ photo.photography.url }}" class="card-img-top" alt="Должна быть фотография"></a>
         <div class="card-body">
           <h5 class="card-title">Автор: {{ photo.author }}</h5>
@@ -31,9 +33,9 @@
             <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
         {% endif %}
         {% if user not in photo.favorites.all %}
-            <button id="favoritebtn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">В избранное</button>
+            <button class="btn btn-secondary" id="btn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">В избранное</button>
         {% else %}
-            <button id="favoritebtn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">Удалить из избранного</button>
+            <button class="btn btn-secondary" id="btn" onclick="favorite(event)" data-id="{{ photo.id }}" data-photo-url="{% url 'api:favorite' photo.pk %}">Удалить из избранного</button>
         {% endif %}
         </div>
       </div>

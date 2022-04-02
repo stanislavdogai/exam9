@@ -1,0 +1,131 @@
+[
+{
+  "model": "webapp.photo",
+  "pk": 1,
+  "fields": {
+    "photography": "images/4433-svet-nochnoe_nebo-kuchevye-kuchevoe_oblako-lunnyj_svet-1920x1080_wNDORI7.jpg",
+    "signature": "Крутое ночное небо",
+    "created_at": "2022-04-02T09:11:32.022Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "fa15369d-ae74-4e16-88c5-e3d97ec3c679",
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "photography": "images/zvezdnoe_nebo_zvezdy_blesk_131522_1920x1080_R8r4mZ1.jpg",
+    "signature": "night",
+    "created_at": "2022-04-02T09:56:38.115Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "aa09eeb9-323b-4005-b989-1d3b19830dbe",
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "photography": "images/zvezdnoe_nebo_zvezdy_blesk_131522_1920x1080_91bucn0.jpg",
+    "signature": "night",
+    "created_at": "2022-04-02T09:56:58.955Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "a5baafc4-e01f-494a-a82d-c4a2e9834e85",
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "photography": "images/palmy-lodka-barkas-tropiki-more-oblaka-pesok_egyyD19.jpg",
+    "signature": "Putevka",
+    "created_at": "2022-04-02T10:00:46.410Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "2b8f6af4-6774-4317-9050-8a30ff7d6520",
+    "favorites": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 5,
+  "fields": {
+    "photography": "images/4433-svet-nochnoe_nebo-kuchevye-kuchevoe_oblako-lunnyj_svet-1920x1080_oV3bc8M.jpg",
+    "signature": "bla bla",
+    "created_at": "2022-04-02T10:04:05.827Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "9dac2d9b-437e-48c5-8bff-71b3020fa504",
+    "favorites": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "photography": "images/4433-svet-nochnoe_nebo-kuchevye-kuchevoe_oblako-lunnyj_svet-1920x1080_wrKm0Hm.jpg",
+    "signature": "123",
+    "created_at": "2022-04-02T10:13:33.224Z",
+    "author": 2,
+    "album": 5,
+    "private": true,
+    "token": null,
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 7,
+  "fields": {
+    "photography": "images/4433-svet-nochnoe_nebo-kuchevye-kuchevoe_oblako-lunnyj_svet-1920x1080_7QddCvV.jpg",
+    "signature": "asasa",
+    "created_at": "2022-04-02T12:05:58.855Z",
+    "author": 1,
+    "album": 4,
+    "private": false,
+    "token": "ea3e94d9-6e25-4f27-bb06-7252358799f2",
+    "favorites": []
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 4,
+  "fields": {
+    "name": "Attaractor",
+    "description": "Good School",
+    "author_album": 1,
+    "created_at": "2022-04-02T09:11:26.902Z",
+    "private": false,
+    "favorites": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 5,
+  "fields": {
+    "name": "Instagram",
+    "description": "Russia",
+    "author_album": 2,
+    "created_at": "2022-04-02T10:13:24.686Z",
+    "private": true,
+    "favorites": []
+  }
+}
+]
