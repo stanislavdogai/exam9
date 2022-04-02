@@ -12,12 +12,20 @@
           <h5 class="card-title">Автор: {{ photo.author }}</h5>
           <p class="card-text">Подпись: {{ photo.signature }}</p>
           <p class="card-text"><small class="text-muted">Дата создания: {{ photo.created_at.date }}</small></p>
+                {% if perms.webapp.delete_photo or user in photo.author %}
              <a class="btn btn-secondary" href="{% url 'web:photo_delete' photo.pk %}">Удалить пост</a>
+                {% endif %}
+            {% if perms.webapp.change_photo or user in photo.author %}
             <a class="btn btn-secondary" href="{% url 'web:photo_update' photo.pk %}">Редактировать</a>
+            {% endif %}
         </div>
       </div>
     {% endfor %}
 </div>
+    {% if perms.webapp.delete_album or user in photo.author %}
     <a class="btn btn-secondary" href="{% url 'web:album_delete' album.pk %}">Удалить альбом</a>
+    {% endif %}
+    {% if perms.webapp.delete_album or user in photo.author %}
     <a class="btn btn-secondary" href="{% url 'web:album_update' album.pk %}">Редактировать</a>
+    {% endif %}
 {% endblock %}
